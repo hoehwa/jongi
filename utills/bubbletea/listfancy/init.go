@@ -72,7 +72,7 @@ func newModel(titles []string, descs []string, itemDir string) model {
 	)
 
 	// Make initial list of items
-	const numItems = 24
+	numItems := len(titles)
 	items := make([]list.Item, numItems)
 	for i := 0; i < numItems; i++ {
 		items[i] = itemGenerator.next(titles, descs)

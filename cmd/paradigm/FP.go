@@ -4,7 +4,7 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package paradigm
 
 import (
-	utills "github.com/hoehwa/jongi/utills/print.go"
+	"github.com/hoehwa/jongi/utills"
 	"github.com/spf13/cobra"
 )
 
