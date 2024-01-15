@@ -5,10 +5,11 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/go-git/go-git/v5"
-	"github.com/hoehwa/jongi/constants"
+	"github.com/hoehwa/jongi/internal"
 	"github.com/spf13/cobra"
 )
 
@@ -25,21 +26,23 @@ to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		if _, err := os.ReadDir(constants.BaseDir); err != nil {
+		if _, err := os.ReadDir(internal.BaseDir); err != nil {
 			// Clone the given repository to the given directory
-			targetURL := fmt.Sprintf("https://github.com/%s/%s", constants.Owner, constants.Repository)
+			targetURL := fmt.Sprintf("https://github.com/%s/%s", internal.Owner, internal.Repository)
 
 			info(fmt.Sprintf("git clone %s", targetURL))
 
-			_, err := git.PlainClone(constants.BaseDir, false, &git.CloneOptions{
+			_, err := git.PlainClone(internal.BaseDir, false, &git.CloneOptions{
 				URL:      targetURL,
 				Progress: os.Stdout,
 			})
 			checkIfError(err)
 		}
 
-		fmt.Println("To see how this commands colud be used, run this command again with --help option.")
-
+		err := cmd.Help()
+		if err != nil {
+			log.Fatal(err)
+		}
 	},
 }
 
