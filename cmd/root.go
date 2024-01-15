@@ -4,12 +4,12 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
 	"log"
 	"os"
 
-	"github.com/go-git/go-git/v5"
+	"github.com/hoehwa/gopkg/git"
 	"github.com/hoehwa/jongi/internal"
+
 	"github.com/spf13/cobra"
 )
 
@@ -26,18 +26,7 @@ to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		if _, err := os.ReadDir(internal.BaseDir); err != nil {
-			// Clone the given repository to the given directory
-			targetURL := fmt.Sprintf("https://github.com/%s/%s", internal.Owner, internal.Repository)
-
-			info(fmt.Sprintf("git clone %s", targetURL))
-
-			_, err := git.PlainClone(internal.BaseDir, false, &git.CloneOptions{
-				URL:      targetURL,
-				Progress: os.Stdout,
-			})
-			checkIfError(err)
-		}
+		git.CloneRepoInto(internal.Owner, internal.Repository, internal.BaseDir)
 
 		err := cmd.Help()
 		if err != nil {
@@ -65,18 +54,4 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
-
-func checkIfError(err error) {
-	if err == nil {
-		return
-	}
-
-	fmt.Printf("\x1b[31;1m%s\x1b[0m\n", fmt.Sprintf("error: %s", err))
-	os.Exit(1)
-}
-
-// info should be used to describe the example commands that are about to run.
-func info(format string, args ...interface{}) {
-	fmt.Printf("\x1b[34;1m%s\x1b[0m\n", fmt.Sprintf(format, args...))
 }
