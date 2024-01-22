@@ -11,4 +11,4 @@ var Owner = "mindulle"
 var Repository = "background"
 
 // urls for hosted websites.
-const GardenBaseurl = "https://garden.mindulle.vercel.app/core"
+const BaseURL = "https://garden.mindulle.vercel.app/core/background"

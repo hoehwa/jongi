@@ -11,8 +11,8 @@ import (
 
 // Return a formatted filename as an URL format.
 func fmtFileNameToURL(subPath string, fname string) string {
-	basename := BaseDir + subPath + "/"
-	location := strings.TrimRight(fname, ".")
+	basename := BaseURL + subPath + "/"
+	location := strings.Split(fname, ".")[0]
 
 	return basename + location
 }
@@ -40,7 +40,7 @@ func ShowListAt(subPath string) {
 	srcPath := BaseDir + subPath
 
 	titles, descs := getTitlesAndDescs(srcPath, subPath)
-	var selection *string
+	var selection *listfancy.Item
 
 	callout := listfancy.NewCallout(listfancy.Callout{
 		Titles:    titles,
@@ -49,5 +49,5 @@ func ShowListAt(subPath string) {
 	})
 
 	listfancy.InitCallout(*callout)
-	beautify.RawContent(srcPath, *callout.Selection)
+	beautify.RawContent(srcPath, callout.Selection.Description())
 }
