@@ -27,7 +27,9 @@ to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		git.CloneRepoInto(internal.Owner, internal.Repository, internal.BaseDir)
+		if initFlag, _ := cmd.Flags().GetBool("init"); initFlag {
+			git.CloneRepoInto(internal.Owner, internal.Repository, internal.BaseDir)
+		}
 
 		err := cmd.Help()
 		if err != nil {
@@ -54,5 +56,6 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	RootCmd.Flags().Bool("init", false, "Get contents from the remote repository.")
 }
