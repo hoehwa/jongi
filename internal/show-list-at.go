@@ -49,5 +49,5 @@ func ShowListAt(subPath string) {
 	})
 
 	listfancy.InitCallout(*callout)
-	beautify.RawContent(srcPath, callout.Selection.Description())
+	beautify.RawContent(srcPath, callout.Selection.Title())
 }
