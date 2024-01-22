@@ -9,7 +9,7 @@ import (
 	"github.com/hoehwa/gopkg/bubbletea/listfancy"
 )
 
-// Return a pretty-printed filename as an URL format.
+// Return a formatted filename as an URL format.
 func fmtFileNameToURL(subPath string, fname string) string {
 	basename := BaseDir + subPath + "/"
 	location := strings.TrimRight(fname, ".")

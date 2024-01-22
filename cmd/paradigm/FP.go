@@ -1,7 +1,7 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 */
-package paradigm
+package cmd
 
 import (
 	"github.com/hoehwa/jongi/internal"

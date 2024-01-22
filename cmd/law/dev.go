@@ -1,7 +1,7 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 */
-package law
+package cmd
 
 import (
 	"github.com/hoehwa/jongi/internal"
@@ -24,7 +24,7 @@ to quickly create a Cobra application.`,
 }
 
 func init() {
-	lawCmd.AddCommand(devCmd)
+	LawCmd.AddCommand(devCmd)
 
 	// Here you will define your flags and configuration settings.
 
